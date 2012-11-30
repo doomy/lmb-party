@@ -11,68 +11,46 @@
                 <header>
                     <h1>LMB Party</h1>
                         <div class="select_language">
-                            <a href="?l=en">[ ENGLISH ]</a>
+                            <a href="?l=<?php echo $local->switch_lang_shortcut ?>">[ <?php echo $local->switch_lang_caption ?> ]</a>
                         </div>
                     <hr />
                 </header>
                 <div class="holder_content">
                   <section class="group">
-                     <h3>Co je LMB Party?</h3>
+                     <h3><?php echo $local->what_is_lmb_caption ?></h3>
                      <p>
-                        LMB party je tradiční outdoorový celovíkendový
-                        megamejdan pořádaný anuálně ke konci dubna,
-                        situovaný na samotě v poetickém prostředí mezi
-                        Karlštejnskem a Berounskem.
-                        
-                        Na místě bývá zajištěn výčep s točeným pivem
+                        <?php echo $local->whatis_text1 ?>
 
                         <a class="section_image"><img src="images/picture1.jpg" width="240" height="214" alt="picture1"/></a><br />
 
-
-                        za příjemné ceny, občerstvení z grilu, a hlasitá
-                        reprodukovaná hudba zpravidla rockového a metalového ražení.
+                        <?php echo $local->whatis_text2 ?>
                      </p>
                    </section>
                   <section class="group">
-                     <h3>Doprava a umístění</h3>
+                     <h3><?php echo $local->directions_caption ?></h3>
                      <p>
-                        Místo jak hromadnou dopravou (vlak, bus), tak autem. Na
-                        místě je dostatečné množství prostoru k parkování.
-                        Přesná adresa objektu je <strong>Tetín č.p. 70</strong>
-                        (nesplést s domem uvnitř Tetína s totožným číslem
+                        <?php echo $local->directions_text1 ?>
+                        
                         <a class="section_image" ><img src="images/picture2.jpg" width="240" height="214" alt="picture1"/></a>
-                        evidenčním, uprostřed obce. Areál se nachází za vesnicí!).
 
-                        Nejbližší obce dostupné hromadnou dopravou jsou
-                        Tetín (1 km, bus z Berouna), Srbsko (2 km, vlak z Prahy
-                        a Berouna), Beroun (3 km, vlak a bus z Prahy). Při
-                        příjezdu větší skupiny možno domluvit odvoz zavazadel.
+                        <?php echo $local->directions_text2 ?>
                      </p>
 
 
                    </section>
                   <section class="group">
-                     <h3>Ubytování</h3>
+                     <h3><?php echo $local->accomodation_caption ?></h3>
                      <p>
-                        Vzhledem k rostoucí návštěvnosti akce a kapacitní
-                        omezenosti objektu bohužel nejsem schopen zajistit
-                        tuto možnost pro všechny návštěvníky. Většinu míst
-                        uvnitř zpravidla přednostně poskytuji jako
+                        <?php echo $local->accomodation_text1 ?>
                         
                         <a class="section_image"><img src="images/picture3.jpg" width="240" height="214" alt="picture1"/></a>
                         
-                        privilegium a poděkování přípravnému týmu a zbylá místa
-                        bývají obsazena velmi rychle. Zbytek hostů ubytování
-                        řeší typicky stanem popřípadě noclehem v autě. Občas se
-                        i najde pár tvorů, co si lože najdou v
-                        jakékoli poloze na jakémkoli místě, jakož i těch,
-                        kteří tuto situaci řeší kompletním vypuštěním spánku
-                        z víkendového programu :)
+                        <?php echo $local->accomodation_text2 ?>
                      </p>
                	</section>
                 </div>
                 <div class="holder_content">
-                    <h1>Další informace začnou přibývat brzy.</h3>
+                    <h1><?php echo $local->more_info_soon ?></h1>
                 </div>
             </div>
             <footer>
