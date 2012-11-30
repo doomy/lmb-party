@@ -14,7 +14,7 @@ body {
 	color: black;
 	margin: 0 0 1px; height: 100%; 
 	line-height: 1.7em;
-	border-top: 10px solid black;
+	border-top: 10px solid #317d2c;
 }
 
 
@@ -127,7 +127,7 @@ footer {
 	background-position: left top;
 	background-repeat: repeat-x;
 	margin-bottom: 18px;
-	background-color: black;
+	background-color: #317d2c;
 }
 
 #left_footer, #right_footer {
