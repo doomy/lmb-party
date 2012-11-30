@@ -144,8 +144,13 @@ footer {
 
 #right_footer {
 	position: absolute;
+    padding-top: 130px;
+	width: 395px;
+	height: 60px;
+ 	background-image: url('footer-theme1.png');
+	background-position: -100px;
 	right: 225px;
-	top: 26px;
+	top: -100px;
 	color: white;
 }
 
