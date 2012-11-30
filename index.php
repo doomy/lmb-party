@@ -1,6 +1,8 @@
 <?php
     include_once("lib/env.php");
-    $env = new Env("/");
+    $env = new Env("");
+    include_once($env->basedir."lib/db_handler.php");
+    $dbh = new dbHandler($env);
 
     $lang = @$_GET['l'];
 

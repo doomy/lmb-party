@@ -105,7 +105,7 @@ class Dir {
         if ($all_from_dir = $this->_get_all_from_dir($dir)) {
             $files = array();
             foreach($all_from_dir as $dir_element)
-                if ($this->is_file($dir.'/'.$dir_element))
+                if ($this->_is_file($dir.'/'.$dir_element))
                     $files[] .= $dir_element;
             return $files;
         }
@@ -113,7 +113,9 @@ class Dir {
     }
 
     private function _get_all_from_dir($dir) {
+
         if ($handle = @opendir($dir)) {
+
             $files = array();
             while ($file = readdir($handle)) {
                 if ($file != "." && $file != "..") {
