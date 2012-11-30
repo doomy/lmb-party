@@ -126,6 +126,7 @@ footer {
 	width: 100%;
 	background-position: left top;
 	background-repeat: repeat-x;
+	background-image: url('footer-bg.png');
 	margin-bottom: 18px;
 	background-color: #317d2c;
 }
