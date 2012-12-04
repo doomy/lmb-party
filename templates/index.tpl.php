@@ -20,8 +20,9 @@
                      <h3><?php echo $local->what_is_lmb_caption ?></h3>
                      <p>
                         <?php echo $local->whatis_text1 ?>
-
-                        <a class="section_image"><img src="images/picture1.jpg" width="240" height="214" alt="picture1"/></a><br />
+                        <a class="section_image" >
+                            <embed src="images/lmb-party.swf" width="240" height="214" />
+                        </a>
 
                         <?php echo $local->whatis_text2 ?>
                      </p>
@@ -31,7 +32,9 @@
                      <p>
                         <?php echo $local->directions_text1 ?>
                         
-                        <a class="section_image" ><img src="images/picture2.jpg" width="240" height="214" alt="picture1"/></a>
+                        <a class="section_image" >
+                            <embed src="images/lmb-party-2.swf" width="240" height="214" />
+                        </a>
 
                         <?php echo $local->directions_text2 ?>
                      </p>
@@ -43,7 +46,9 @@
                      <p>
                         <?php echo $local->accomodation_text1 ?>
                         
-                        <a class="section_image"><img src="images/picture3.jpg" width="240" height="214" alt="picture1"/></a>
+                        <a class="section_image" >
+                            <embed src="images/lmb-party-3.swf" width="240" height="214" />
+                        </a>
                         
                         <?php echo $local->accomodation_text2 ?>
                      </p>
