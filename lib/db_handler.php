@@ -1,6 +1,6 @@
 <?php
 class dbHandler {
-    # version 8
+    # version 9
 
     private $connection;
 
@@ -24,11 +24,11 @@ class dbHandler {
         $columns = implode(', ', $columns_list);
         if ($order_by <> '')
             $order_by = "ORDER BY $order_by";
+        if ($where) $where = "WHERE $where";
         if ($desc) $desc = 'DESC';
-        if ($where) $desc = "WHERE $where";
         else
             $desc = '';
-        $sql = "SELECT $columns FROM $table $order_by $desc LIMIT 1;";
+        $sql = "SELECT $columns FROM $table $where $order_by $desc LIMIT 1;";
         $result = $this->query($sql);
         return mysql_fetch_assoc($result);
     }
@@ -64,7 +64,6 @@ class dbHandler {
     
     private function _manage_upgrades() {
         $last_processed_upgrade_id = $this->_get_last_processed_upgrade_id();
-
         $upgrade_files = $this->_get_upgrade_files();
         
         $last_file = @end($upgrade_files);
@@ -96,14 +95,14 @@ class dbHandler {
 
     private function _upgrade_to_version($upgrade_id, $upgrade_file) {
         $this->process_sql_file(
-            $this->env->basedir . '/sql/upgrade/' . $upgrade_file
+            $this->env->basedir . 'sql/upgrade/' . $upgrade_file
         );
         $this->_update_upgrade_version($upgrade_id);
     }
     
     private function _get_last_processed_upgrade_id() {
         $assoc_array = @$this->query_get_assoc_onerow(
-            array('id'), 'upgrade_history', , 'id', true
+            array('id'), 'upgrade_history', false, 'id', true
         );
         return $assoc_array['id'];
     }
