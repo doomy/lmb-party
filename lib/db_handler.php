@@ -24,19 +24,17 @@ class dbHandler {
         $columns = implode(', ', $columns_list);
         if ($order_by <> '')
             $order_by = "ORDER BY $order_by";
+        if ($where) $where = "WHERE $where";
         if ($desc) $desc = 'DESC';
-        if ($where) $desc = "WHERE $where";
         else
             $desc = '';
-        $sql = "SELECT $columns FROM $table $order_by $desc LIMIT 1;";
+        $sql = "SELECT $columns FROM $table $where $order_by $desc LIMIT 1;";
         $result = $this->query($sql);
         return mysql_fetch_assoc($result);
     }
 
     public function query($sql) {
-        $query = mysql_query($sql, $this->connection);
-        //if (!$query) die("QUERY FAILED: $sql");
-        return $query;
+        return mysql_query($sql, $this->connection);
     }
     
     public function get_array_of_rows_from_table($table_name) {
@@ -104,7 +102,7 @@ class dbHandler {
     
     private function _get_last_processed_upgrade_id() {
         $assoc_array = @$this->query_get_assoc_onerow(
-            array('id'), 'upgrade_history', , 'id', true
+            array('id'), 'upgrade_history', false, 'id', true
         );
         return $assoc_array['id'];
     }
