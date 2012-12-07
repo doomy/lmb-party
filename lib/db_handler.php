@@ -19,13 +19,13 @@ class dbHandler {
     }
 
     public function query_get_assoc_onerow(
-        $columns_list, $table, $order_by = '', $desc = false
+        $columns_list, $table, $where = false, $order_by = '', $desc = false
     ) {
         $columns = implode(', ', $columns_list);
         if ($order_by <> '')
             $order_by = "ORDER BY $order_by";
-        if ($desc)
-            $desc = 'DESC';
+        if ($desc) $desc = 'DESC';
+        if ($where) $desc = "WHERE $where";
         else
             $desc = '';
         $sql = "SELECT $columns FROM $table $order_by $desc LIMIT 1;";
@@ -103,7 +103,7 @@ class dbHandler {
     
     private function _get_last_processed_upgrade_id() {
         $assoc_array = @$this->query_get_assoc_onerow(
-            array('id'), 'upgrade_history', 'id', true
+            array('id'), 'upgrade_history', , 'id', true
         );
         return $assoc_array['id'];
     }
