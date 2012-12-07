@@ -9,7 +9,7 @@
     $lang = @$_GET['l'] ? $_GET['l'] : 'cs';
 
     include_once($env->basedir."lib/local.php");
-    $local = new Local($lang);
+    $local = new Local($lang, $dbh);
 
     switch ($lang) {
         case 'en':

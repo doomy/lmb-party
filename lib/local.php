@@ -1,7 +1,7 @@
 <?php
 class Local {
     //version 1
-    public function __construct($lang) {
+    public function __construct($lang, $dbh) {
         switch($lang) {
 
             case "en":
@@ -99,7 +99,8 @@ class Local {
                     kteří tuto situaci řeší kompletním vypuštěním spánku
                     z víkendového programu :)";
 
-                $this->more_info_soon = "Více informací již brzy.";
+               // $this->more_info_soon = "Více informací již brzy.";
+               $this->more_info_soon = "";
             break;
         }
     }

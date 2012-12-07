@@ -1,6 +1,6 @@
 <?php
 class dbHandler {
-    # version 8
+    # version 9
 
     private $connection;
 
@@ -34,7 +34,9 @@ class dbHandler {
     }
 
     public function query($sql) {
-        return mysql_query($sql, $this->connection);
+        $query = mysql_query($sql, $this->connection);
+        //if (!$query) die("QUERY FAILED: $sql");
+        return $query;
     }
     
     public function get_array_of_rows_from_table($table_name) {
@@ -64,7 +66,6 @@ class dbHandler {
     
     private function _manage_upgrades() {
         $last_processed_upgrade_id = $this->_get_last_processed_upgrade_id();
-
         $upgrade_files = $this->_get_upgrade_files();
         
         $last_file = @end($upgrade_files);
@@ -96,7 +97,7 @@ class dbHandler {
 
     private function _upgrade_to_version($upgrade_id, $upgrade_file) {
         $this->process_sql_file(
-            $this->env->basedir . '/sql/upgrade/' . $upgrade_file
+            $this->env->basedir . 'sql/upgrade/' . $upgrade_file
         );
         $this->_update_upgrade_version($upgrade_id);
     }

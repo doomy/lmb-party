@@ -6,7 +6,7 @@ include_once ($env->basedir . 'lib/local.php');
 
 class UnitTest_Local extends UnitTestBase {
     public function test_construct() {
-        return ($local = new Local());
+        return ($local = new Local('en', ''));
     }
 }
 
