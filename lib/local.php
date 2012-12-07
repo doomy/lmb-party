@@ -1,6 +1,6 @@
 <?php
 class Local {
-    //version 2
+    //version 3
     public function __construct($lang, $dbh) {
         $this->dbh = $dbh;
         $this->_init_local_values($lang);
@@ -34,12 +34,12 @@ class Local {
     }
 
     private function _get_localised_text_value($lang, $label) {
-        $row = $this->dbh->query_get_assoc_onerow(
+        $row = $this->dbh->query_get_obj_onerow(
             array("text"),
             "t_local",
             "lang = '$lang' AND str_id = '$label'"
         );
-        return $row["text"];
+        return $row->text;
     }
 }
 

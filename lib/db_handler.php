@@ -1,6 +1,6 @@
 <?php
 class dbHandler {
-    # version 9
+    # version 10
 
     private $connection;
 
@@ -21,16 +21,15 @@ class dbHandler {
     public function query_get_assoc_onerow(
         $columns_list, $table, $where = false, $order_by = '', $desc = false
     ) {
-        $columns = implode(', ', $columns_list);
-        if ($order_by <> '')
-            $order_by = "ORDER BY $order_by";
-        if ($where) $where = "WHERE $where";
-        if ($desc) $desc = 'DESC';
-        else
-            $desc = '';
-        $sql = "SELECT $columns FROM $table $where $order_by $desc LIMIT 1;";
-        $result = $this->query($sql);
-        return mysql_fetch_assoc($result);
+        $result = $this->_query_get_result_onerow($columns_list, $table, $where, $order_by, $desc);
+        return $this->fetch_from_result('assoc');
+    }
+    
+    public function query_get_obj_onerow(
+        $columns_list, $table, $where = false, $order_by = '', $desc = false
+    ) {
+        $result = $this->_query_get_result_onerow($columns_list, $table, $where, $order_by, $desc);
+        return $this->fetch_from_result($result, 'object');
     }
 
     public function query($sql) {
@@ -40,7 +39,7 @@ class dbHandler {
     public function get_array_of_rows_from_table($table_name) {
         $sql = "SELECT * FROM $table_name";
         $result = $this->query($sql);
-        while ($row = mysql_fetch_assoc($result)) {
+        while ($row = $this->fetch_from_result($result, 'assoc')) {
             $rows[] = $row;
         }
         return $rows;
@@ -56,6 +55,11 @@ class dbHandler {
     public function process_sql_file($path) {
         $sql = file_get_contents($path);
         $this->process_sql($sql);
+    }
+    
+    public function fetch_from_result($result, $format = 'object') {
+        $function_name = "mysql_fetch_$format";
+        return $function_name($result);
     }
     
     private function _create_db() {
@@ -118,6 +122,20 @@ class dbHandler {
     private function _update_upgrade_version($upgrade_id) {
         $sql = "INSERT INTO upgrade_history (id, message) VALUES('$upgrade_id', 'Upgrade no. $upgrade_id');";
         $this->query($sql);
+    }
+    
+    private function _query_get_result_onerow(
+        $columns_list, $table, $where = false, $order_by = '', $desc = false
+    ) {
+        $columns = implode(', ', $columns_list);
+        if ($order_by <> '')
+            $order_by = "ORDER BY $order_by";
+        if ($where) $where = "WHERE $where";
+        if ($desc) $desc = 'DESC';
+        else
+            $desc = '';
+        $sql = "SELECT $columns FROM $table $where $order_by $desc LIMIT 1;";
+        return $this->query($sql);
     }
 }
 ?>
