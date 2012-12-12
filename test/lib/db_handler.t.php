@@ -42,8 +42,11 @@ class mockDbHandler extends dbHandler {
 }
 
 class UnitTest_dbHandler extends UnitTestBase {
-    public function test_query_get_obj_onerow() {
+    public function init() {
         $this->db_handler = new mockDbHandler();
+    }
+
+    public function test_query_get_obj_onerow() {
         $row_object = $this->db_handler->query_get_obj_onerow(
             array('column1', 'column2'),
             'test_table'
@@ -57,7 +60,6 @@ class UnitTest_dbHandler extends UnitTestBase {
     }
 
     public function test_get_array_of_rows_as_objects_from_table() {
-        $this->db_handler = new mockDbHandler();
         $rows_array = $this->db_handler->get_array_of_rows_from_table(
             'test_table', array('column1', 'column2'), null, 'object'
         );
@@ -65,7 +67,6 @@ class UnitTest_dbHandler extends UnitTestBase {
     }
 
     public function test_get_array_of_rows_as_assoc_from_table() {
-        $this->db_handler = new mockDbHandler();
         $rows_array = $this->db_handler->get_array_of_rows_from_table(
             'test_table', null, null, 'assoc'
         );

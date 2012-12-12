@@ -6,10 +6,8 @@ include_once ($env->basedir . 'lib/test/unit_test_base.php');
 include_once ($env->basedir . 'lib/file.php');
 
 class UnitTest_File extends UnitTestBase {
-     public function __construct($env) {
+     public function init() {
          $this->file = new File;
-         include_once($env->basedir.'lib/dir.php');
-         $this->dir = new Dir($env);
      }
 
     public function test_set_name_get_name() {

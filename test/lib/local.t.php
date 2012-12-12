@@ -16,13 +16,22 @@ class mockDbHandler_Local {
 }
 
 class UnitTest_Local extends UnitTestBase {
+
+    public function init() {
+        $this->mock_dbh = new mockDbHandler_Local;
+    }
+
     public function test_construct() {
-        return ($local = new Local('en', new mockDbHandler_Local));
+        return ($local = $this->_get_en_local());
     }
 
     public function test_set_values() {
-        $local = new Local('en', new mockDbHandler_Local);
+        $local = $this->_get_en_local();
         return ($local->test_more_info_soon == 'More info soon.');
+    }
+    
+    private function _get_en_local() {
+        return new Local('en', $this->mock_dbh);
     }
 }
 

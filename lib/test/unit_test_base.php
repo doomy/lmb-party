@@ -1,11 +1,15 @@
 <?php
-# version 6
+# version 7
 
 class UnitTestBase {
     public function __construct($env) {
         $this->env = $env;
         include_once($this->env->basedir . 'lib/dir.php');
         $this->dir = new Dir($this->env);
+        $this->init();
+    }
+    
+    public function init() {
     }
 }
 
