@@ -21,55 +21,61 @@ class dbHandler {
     public function query_get_assoc_onerow(
         $columns_list, $table, $where = false, $order_by = '', $desc = false
     ) {
-        $result = $this->_query_get_result_onerow($columns_list, $table, $where, $order_by, $desc);
-        return $this->fetch_from_result('assoc');
+        $result = $this->_query_get_result($columns_list, $table, $where, $order_by, $desc, 1);
+        return $this->fetch_one_from_result('assoc');
     }
-    
+
     public function query_get_obj_onerow(
         $columns_list, $table, $where = false, $order_by = '', $desc = false
     ) {
-        $result = $this->_query_get_result_onerow($columns_list, $table, $where, $order_by, $desc);
-        return $this->fetch_from_result($result, 'object');
+        $result = $this->_query_get_result($columns_list, $table, $where, $order_by, $desc, 1);
+        return $this->fetch_one_from_result($result, 'object');
     }
 
     public function query($sql) {
         return mysql_query($sql, $this->connection);
     }
-    
-    public function get_array_of_rows_from_table($table_name) {
-        $sql = "SELECT * FROM $table_name";
-        $result = $this->query($sql);
-        while ($row = $this->fetch_from_result($result, 'assoc')) {
-            $rows[] = $row;
-        }
-        return $rows;
+
+    public function get_array_of_rows_from_table(
+        $table_name, $columns = null, $where = null, $format = 'object'
+    ) {
+        $result = $this->_query_get_result($columns, $table_name, $where);
+        return $this->fetch_multiple_from_result($result, $format);
     }
-    
+
     public function process_sql($sql) {
         $queries = explode(';', $sql);
         foreach ($queries as $query) {
             $this->query($query.';');
         }
     }
-    
+
     public function process_sql_file($path) {
         $sql = file_get_contents($path);
         $this->process_sql($sql);
     }
-    
-    public function fetch_from_result($result, $format = 'object') {
+
+    public function fetch_one_from_result($result, $format = 'object') {
         $function_name = "mysql_fetch_$format";
         return $function_name($result);
     }
-    
+
+    public function fetch_multiple_from_result($result, $format = 'object') {
+        $function_name = "mysql_fetch_$format";
+        while ($row = $function_name($result)) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
     private function _create_db() {
         $this->process_sql_file($this->env->basedir.'sql/base.sql');
     }
-    
+
     private function _manage_upgrades() {
         $last_processed_upgrade_id = $this->_get_last_processed_upgrade_id();
         $upgrade_files = $this->_get_upgrade_files();
-        
+
         $last_file = @end($upgrade_files);
         $newest_upgrade_id = $this->_get_upgrade_id_from_filename($last_file);
 
@@ -79,7 +85,7 @@ class dbHandler {
             );
         }
     }
-    
+
     private function _upgrade_to_actual(
         $upgrade_files, $last_processed_upgrade_id
     )
@@ -91,7 +97,7 @@ class dbHandler {
             }
         }
     }
-    
+
     private function _get_upgrade_id_from_filename($upgrade_file) {
         $parts = explode('.', $upgrade_file);
         return $parts[0];
@@ -103,14 +109,14 @@ class dbHandler {
         );
         $this->_update_upgrade_version($upgrade_id);
     }
-    
+
     private function _get_last_processed_upgrade_id() {
         $assoc_array = @$this->query_get_assoc_onerow(
             array('id'), 'upgrade_history', false, 'id', true
         );
         return $assoc_array['id'];
     }
-    
+
     private function _get_upgrade_files() {
         include_once($this->env->basedir.'lib/dir.php');
         $dir_handler = new Dir($this->env);
@@ -118,23 +124,25 @@ class dbHandler {
              $this->env->basedir.'sql/upgrade', 'sql'
         );
     }
-    
+
     private function _update_upgrade_version($upgrade_id) {
         $sql = "INSERT INTO upgrade_history (id, message) VALUES('$upgrade_id', 'Upgrade no. $upgrade_id');";
         $this->query($sql);
     }
-    
-    private function _query_get_result_onerow(
-        $columns_list, $table, $where = false, $order_by = '', $desc = false
+
+    private function _query_get_result(
+        $columns_list = null, $table, $where = null, $order_by = '', $desc = false, $limit = null
     ) {
-        $columns = implode(', ', $columns_list);
+        if (!$columns_list) $columns = '*';
+        else $columns = implode(', ', $columns_list);
         if ($order_by <> '')
             $order_by = "ORDER BY $order_by";
         if ($where) $where = "WHERE $where";
         if ($desc) $desc = 'DESC';
+        if ($limit) $limit = "LIMIT $limit";
         else
             $desc = '';
-        $sql = "SELECT $columns FROM $table $where $order_by $desc LIMIT 1;";
+        $sql = "SELECT $columns FROM $table $where $order_by $desc $limit;";
         return $this->query($sql);
     }
 }

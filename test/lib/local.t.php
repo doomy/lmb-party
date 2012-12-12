@@ -5,10 +5,13 @@ include_once ($env->basedir . 'lib/test/unit_test_base.php');
 include_once ($env->basedir . 'lib/local.php');
 
 class mockDbHandler_Local {
-    public function query_get_obj_onerow() {
-        $row_object = new stdClass;
-        $row_object->text = "More info soon.";
-        return $row_object;
+
+    public function get_array_of_rows_from_table () {
+        $row = new stdClass;
+        $row->str_id = 'test_more_info_soon';
+        $row->text = 'More info soon.';
+
+        return array ($row);
     }
 }
 
@@ -19,7 +22,7 @@ class UnitTest_Local extends UnitTestBase {
 
     public function test_set_values() {
         $local = new Local('en', new mockDbHandler_Local);
-        return ($local->more_info_soon == 'More info soon.');
+        return ($local->test_more_info_soon == 'More info soon.');
     }
 }
 
