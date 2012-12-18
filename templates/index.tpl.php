@@ -1,21 +1,40 @@
 <!doctype html>
-<html lang="cs">
+<html lang="<?php echo $local->lang; ?>">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
+        <meta name="description" content="LMB Party je celovíkendový megavečírek pořádaný na Berounsku..." />
+        <meta name="keywords" content="lmb, party, metal, rock, pivo, mejdan, večírek" />
+        <meta name="author" content="Vladimír Bártek">
         <title>LMB Party</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <?php
+            include_once($env->basedir . "lib/template/file_includer.php");
+            $file_includer = new FileIncluder($env);
+            $file_includer->include_multiple(array(
+                'css/styles.css',
+                'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+                'js/slideshow.js'
+            ), $env);
+        ?>
     </head>
     <body>
         <div class="bg">
+            <header>
+                <div id="header_container">
+                    <div id="img_container">
+                        <img src="css/ram.png" width="980"/>
+                    </div>
+                    <h1 class="hidden">LMB Party</h1>
+                    <a href="http://www.toplist.cz/" target="_top">
+                        <img src="http://toplist.cz/count.asp?id=1452148" alt="TOPlist" border="0">
+                    </a>
+                </div>
+            </header>
             <div id="container">
-                <header>
-                    <h1>LMB Party</h1>
-                        <div class="select_language">
-                            <a href="?l=<?php echo $local->switch_lang_shortcut ?>">[ <?php echo $local->switch_lang_caption ?> ]</a>
-                        </div>
-                    <hr />
-                </header>
-                <div class="holder_content">
+                <div class="select_language">
+                        <a href="?l=<?php echo $local->switch_lang_shortcut ?>">[ <?php echo $local->switch_lang_caption ?> ]</a>
+                    </div>
+                <div class="holder_content" >
+
                   <section class="group">
                      <h3><?php echo $local->what_is_lmb_caption ?></h3>
                      <p>
@@ -31,7 +50,7 @@
                      <h3><?php echo $local->directions_caption ?></h3>
                      <p>
                         <?php echo $local->directions_text1 ?>
-                        
+
                         <a class="section_image" >
                             <embed src="images/lmb-party-2.swf" width="240" height="214" />
                         </a>
@@ -45,11 +64,11 @@
                      <h3><?php echo $local->accomodation_caption ?></h3>
                      <p>
                         <?php echo $local->accomodation_text1 ?>
-                        
+
                         <a class="section_image" >
                             <embed src="images/lmb-party-3.swf" width="240" height="214" />
                         </a>
-                        
+
                         <?php echo $local->accomodation_text2 ?>
                      </p>
                	</section>
