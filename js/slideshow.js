@@ -1,5 +1,5 @@
 var Slideshow = function() {
-    var max_img_index = 9 ;
+    var max_img_index = 10 ;
     
     this.run = function() {
         switch_image(max_img_index);
