@@ -12,6 +12,7 @@
             $file_includer->include_multiple(array(
                 'css/styles.css',
                 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+                'js/jquery.waitforimages.min.js',
                 'js/slideshow.js'
             ), $env);
         ?>

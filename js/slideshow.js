@@ -1,19 +1,12 @@
 var Slideshow = function() {
     var max_img_index = 9 ;
-
-    this.start_cycling = function() {
-        preload_images();
-        switch_image();
-        start_cycling();
-    }
-
-    function preload_images() {
-        var tempImg = [];
-        for (var i=1;i<= max_img_index;i++)
-        {
-            tempImg[i] = new Image();
-            tempImg[i].src = 'css/lmb_"+i+".jpg';
-        }
+    
+    this.run = function() {
+        switch_image(max_img_index);
+        $preload_div = get_preload_div();
+        $($preload_div).waitForImages(function() {
+            start_cycling();
+        });
     }
 
     function start_cycling() {
@@ -27,9 +20,18 @@ var Slideshow = function() {
         $('#img_container').css('background-image', "url('images/slideshow/lmb_"+img_index+".jpg')");
         $('#img_container').fadeIn(350);
     }
+    
+    function get_preload_div() {
+        $div = $('<div />');
+        for (var i=1;i<=max_img_index;i++)
+        {
+            $('<img />').attr('src', 'images/slideshow/lmb_'+i+'.jpg').appendTo($div).css('display','none');
+        }
+        return $div;
+    }
 }
 
 $(document).ready(function() {
     var slideshow = new Slideshow();
-    slideshow.start_cycling();
+    slideshow.run();
 });
