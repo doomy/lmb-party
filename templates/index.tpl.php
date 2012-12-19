@@ -20,8 +20,9 @@
         <div class="bg">
             <header>
                 <div id="header_container">
+                    <img class="slideshow_border" src="css/ram.png" width="980"/>
                     <div id="img_container">
-                        <img src="css/ram.png" width="980"/>
+
                     </div>
                     <h1 class="hidden">LMB Party</h1>
                     <a href="http://www.toplist.cz/" target="_top">
