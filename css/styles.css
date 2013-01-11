@@ -73,7 +73,7 @@ h4 {
 	position: relative;
 	width: 980px;
 	margin: 0 auto;
-	background-color: white;
+ background-color: white;
 	min-height: 100%;
 }
 
@@ -87,7 +87,7 @@ header {
 }
 
 #header_container {
-    background-color: white;
+    background-color: BLACK;
     width: 980px;
     margin: 0 auto;
     overflow: hidden;

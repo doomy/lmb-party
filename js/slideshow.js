@@ -1,5 +1,5 @@
 var Slideshow = function() {
-    var max_img_index = 10 ;
+    var max_img_index = 12;
     
     this.run = function() {
         switch_image(max_img_index);
@@ -10,15 +10,19 @@ var Slideshow = function() {
     }
 
     function start_cycling() {
-        setInterval(function() {$('#img_container').fadeOut(350, function() {
-            switch_image(max_img_index);
-        });}, 5000);
+        setInterval(function() {
+            $('#header_container').css('background-image', $('#img_container').css('background-image'));
+            $('#img_container').fadeOut(800, function() {
+                switch_image(max_img_index);
+                $('#img_container').fadeIn(800);
+            });
+        }, 5000);
     }
 
     function switch_image() {
         var img_index=Math.floor(Math.random()*max_img_index)+1;
+        //var img_index = 4;
         $('#img_container').css('background-image', "url('images/slideshow/lmb_"+img_index+".jpg')");
-        $('#img_container').fadeIn(350);
     }
     
     function get_preload_div() {
