@@ -35,46 +35,46 @@
             <div id="container">
                 <div class="select_language">
                         <a href="?l=<?php echo $local->switch_lang_shortcut ?>">[ <?php echo $local->switch_lang_caption ?> ]</a>
-                    </div>
+                </div>
+                <div class="holder_content">
+                    <h2><?php echo $local->what_is_lmb_caption ?></h2>
+                     <p>
+                        <?php echo $local->whatis_text1 ?>
+                        <?php echo $local->whatis_text2 ?>
+                     </p>
+                </div>
                 <div class="holder_content" >
 
                   <section class="group">
-                     <h3><?php echo $local->what_is_lmb_caption ?></h3>
-                     <p>
-                        <?php echo $local->whatis_text1 ?>
-                        <a class="section_image" >
-                            <embed src="images/lmb-party.swf" width="240" height="214" />
-                        </a>
+                    <a class="section_image" >
+                        <embed src="images/lmb-party.swf" width="240" height="214" />
+                    </a>
 
-                        <?php echo $local->whatis_text2 ?>
-                     </p>
                    </section>
                   <section class="group">
-                     <h3><?php echo $local->directions_caption ?></h3>
-                     <p>
-                        <?php echo $local->directions_text1 ?>
-
                         <a class="section_image" >
                             <embed src="images/lmb-party-2.swf" width="240" height="214" />
                         </a>
-
-                        <?php echo $local->directions_text2 ?>
-                     </p>
-
-
                    </section>
                   <section class="group">
-                     <h3><?php echo $local->accomodation_caption ?></h3>
-                     <p>
-                        <?php echo $local->accomodation_text1 ?>
-
                         <a class="section_image" >
                             <embed src="images/lmb-party-3.swf" width="240" height="214" />
                         </a>
-
+               	</section>
+                </div>
+                <div class="holder_content">
+                    <h2><?php echo $local->directions_caption ?></h2>
+                     <p>
+                        <?php echo $local->directions_text1 ?>
+                        <?php echo $local->directions_text2 ?>
+                     </p>
+                </div>
+                <div class="holder_content">
+                    <h2><?php echo $local->accomodation_caption ?></h2>
+                     <p>
+                        <?php echo $local->accomodation_text1 ?>
                         <?php echo $local->accomodation_text2 ?>
                      </p>
-               	</section>
                 </div>
                 <div class="holder_content">
                     <h1><?php echo $local->more_info_soon ?></h1>
