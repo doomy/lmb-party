@@ -1,4 +1,5 @@
 <?php
+
 class Local {
     //version 4
     public function __construct($lang, $dbh) {

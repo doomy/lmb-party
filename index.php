@@ -6,7 +6,7 @@
     include_once($env->basedir."lib/db_handler.php");
     $dbh = new dbHandler($env);
 
-    $lang = @$_GET['l'] ? $_GET['l'] : 'cs';
+    $lang = @$_GET['l'] ? $_GET['l'] : 'cz';
 
     include_once($env->basedir."lib/local.php");
     $local = new Local($lang, $dbh);

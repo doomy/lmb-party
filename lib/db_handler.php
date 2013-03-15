@@ -1,6 +1,6 @@
 <?php
 class dbHandler {
-    # version 10
+    # version 11
 
     private $connection;
 
@@ -22,7 +22,7 @@ class dbHandler {
         $columns_list, $table, $where = false, $order_by = '', $desc = false
     ) {
         $result = $this->_query_get_result($columns_list, $table, $where, $order_by, $desc, 1);
-        return $this->fetch_one_from_result('assoc');
+        return $this->fetch_one_from_result($result, 'assoc');
     }
 
     public function query_get_obj_onerow(
@@ -75,7 +75,7 @@ class dbHandler {
     private function _manage_upgrades() {
         $last_processed_upgrade_id = $this->_get_last_processed_upgrade_id();
         $upgrade_files = $this->_get_upgrade_files();
-
+        sort($upgrade_files);
         $last_file = @end($upgrade_files);
         $newest_upgrade_id = $this->_get_upgrade_id_from_filename($last_file);
 

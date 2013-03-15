@@ -4,34 +4,16 @@ $env = new Env('../../');
 include_once ($env->basedir . 'lib/test/unit_test_base.php');
 include_once ($env->basedir . 'lib/local.php');
 
-class mockDbHandler_Local {
-
-    public function get_array_of_rows_from_table () {
-        $row = new stdClass;
-        $row->str_id = 'test_more_info_soon';
-        $row->text = 'More info soon.';
-
-        return array ($row);
+class mockDbhLocal {
+    public function get_array_of_rows_from_table() {
+        return array();
     }
 }
 
 class UnitTest_Local extends UnitTestBase {
-
-    public function init() {
-        $this->mock_dbh = new mockDbHandler_Local;
-    }
-
     public function test_construct() {
-        return ($local = $this->_get_en_local());
-    }
-
-    public function test_set_values() {
-        $local = $this->_get_en_local();
-        return ($local->test_more_info_soon == 'More info soon.');
-    }
-    
-    private function _get_en_local() {
-        return new Local('en', $this->mock_dbh);
+        $dbh = new mockDbhLocal();
+        return ($local = new Local('en', $dbh));
     }
 }
 

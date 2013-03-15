@@ -16,6 +16,7 @@
                 'js/slideshow.js'
             ), $env);
         ?>
+        <link rel="image_src" href="images/logo.jpg" />
     </head>
     <body>
         <div class="bg">
