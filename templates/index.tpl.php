@@ -62,6 +62,14 @@
                         </a>
                	</section>
                 </div>
+                
+                <div class="holder_content">
+                    <h2><?php echo $local->quick_info_caption ?></h2>
+                     <p>
+                        <?php echo $local->quick_info_text ?>
+                     </p>
+                </div>
+                
                 <div class="holder_content">
                     <h2><?php echo $local->directions_caption ?></h2>
                      <p>
@@ -69,6 +77,7 @@
                         <?php echo $local->directions_text2 ?>
                      </p>
                 </div>
+
                 <div class="holder_content">
                     <h2><?php echo $local->accomodation_caption ?></h2>
                      <p>
@@ -76,6 +85,7 @@
                         <?php echo $local->accomodation_text2 ?>
                      </p>
                 </div>
+
                 <div class="holder_content">
                     <h1><?php echo $local->more_info_soon ?></h1>
                 </div>
