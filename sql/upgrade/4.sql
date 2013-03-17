@@ -44,7 +44,7 @@ INSERT INTO t_local
         ( "en", "quick_info_caption", "Quick info overview" ),
         ( "en", "quick_info_text", '
             <ul>
-                <li><strong>date: 26.-28.4.2013/strong></li>
+                <li><strong>date: 26.-28.4.2013</strong></li>
                 <li>
                     <strong>directions, address: Tetín 70, Czech republic</strong>
                 </li>
