@@ -1,2 +1,0 @@
-RewriteEngine on
-RewriteRule ^(.*)$ http://www.lmb-party.cz/?l=en
