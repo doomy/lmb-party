@@ -87,6 +87,14 @@
                 </div>
 
                 <div class="holder_content">
+                    <h2><?php echo $local->entry_fee_caption ?></h2>
+                     <p>
+                        <?php echo $local->entry_fee_text ?>
+                     </p>
+                </div>
+
+
+                <div class="holder_content">
                     <h1><?php echo $local->more_info_soon ?></h1>
                 </div>
             </div>
